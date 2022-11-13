@@ -1,10 +1,10 @@
-export const ContactsList = () => {
+import { ContactItem } from 'components/ContactsListItem/ContactsListItem';
+
+export const ContactsList = ({ name, number }) => {
   return (
     <div>
       <ul>
-        <li></li>
-        <li></li>
-        <li></li>
+        <ContactItem name={name} number={number} />
       </ul>
     </div>
   );
