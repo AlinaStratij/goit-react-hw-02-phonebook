@@ -1,9 +1,9 @@
 import React from 'react';
 import { nanoid } from 'nanoid';
 
-import { ContactForm } from 'components/AddContacts/AddContacts.styled';
+import { ContactFormWrapper } from 'components/ContactForm/ContactForm.styled';
 
-export class AddContact extends React.Component {
+export default class ContactForm extends React.Component {
   state = {
     name: ``,
     number: '',
@@ -19,8 +19,7 @@ export class AddContact extends React.Component {
 
   onFormSubmit = event => {
     event.preventDefault();
-    console.log(this.state);
-    this.props.onSubmit(this.state);
+    this.props.onSubmit(this.state.number);
     this.reset();
   };
   reset = () => {
@@ -28,8 +27,9 @@ export class AddContact extends React.Component {
   };
 
   render() {
+    console.log(this.state);
     return (
-      <ContactForm onSubmit={this.onFormSubmit}>
+      <ContactFormWrapper onSubmit={this.onFormSubmit}>
         <div>
           <label htmlFor={this.nameInputId}>Name</label>
           <input
@@ -56,7 +56,8 @@ export class AddContact extends React.Component {
             required
           />
         </div>
-      </ContactForm>
+        <button type="submit">Add contact</button>
+      </ContactFormWrapper>
     );
   }
 }

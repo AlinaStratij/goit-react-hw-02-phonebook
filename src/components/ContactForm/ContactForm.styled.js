@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
 
-export const ContactForm = styled.form`
+export const ContactFormWrapper = styled.form`
   display: block;
 `;
