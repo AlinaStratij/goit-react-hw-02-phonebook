@@ -19,7 +19,8 @@ export default class ContactForm extends React.Component {
 
   onFormSubmit = event => {
     event.preventDefault();
-    this.props.onSubmit(this.state.number);
+    const { name, number } = this.state;
+    this.props.onSubmit(name, number);
     this.reset();
   };
   reset = () => {
@@ -27,7 +28,6 @@ export default class ContactForm extends React.Component {
   };
 
   render() {
-    console.log(this.state);
     return (
       <ContactFormWrapper onSubmit={this.onFormSubmit}>
         <div>

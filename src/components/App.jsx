@@ -25,27 +25,34 @@ export class App extends React.Component {
     }));
   };
 
-  ondeleteContact = contactId => {
+  onDeleteContact = contactId => {
     this.setState(prevState => ({
       contacts: prevState.contacts.filter(contact => contact.id !== contactId),
     }));
+  };
+  filterChange = event => {
+    this.setState({ filter: event.currentTarget.value });
   };
 
   formSubmitHandler(data) {
     console.log(data);
   }
   render() {
-    const { contacts } = this.state;
+    const visibleContacts = this.state.contacts.filter(contact =>
+      contact.name.toLowerCase().includes(this.state.filter.toLowerCase())
+    );
+
+    const { filter } = this.state;
     return (
       <div>
         <h1>Phonebook</h1>
         <ContactForm onSubmit={this.addContact} />
 
         <h2>Contacts</h2>
-        <Filter />
+        <Filter value={filter} onChange={this.filterChange} />
         <ContactsList
-          contacts={contacts}
-          onDeleteContact={this.ondeleteContact}
+          contacts={visibleContacts}
+          onDeleteContact={this.onDeleteContact}
         />
       </div>
     );

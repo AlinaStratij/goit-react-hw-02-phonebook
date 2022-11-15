@@ -1,10 +1,16 @@
 import React from 'react';
 
-const Filter = () => {
+const Filter = ({ value, onChange }) => {
   return (
     <>
       <label>Find contacts by name</label>
-      <input type="text" name="filter" required />
+      <input
+        type="text"
+        name="filter"
+        value={value}
+        onChange={onChange}
+        required
+      />
     </>
   );
 };
