@@ -4,6 +4,8 @@ import ContactForm from './ContactForm';
 import ContactsList from './ContactsList';
 import Filter from './Filter';
 
+import { FormWrapper, ContactsWrapper, AppWrapper, Title } from './App.styled';
+
 export class App extends React.Component {
   state = {
     contacts: [
@@ -44,17 +46,20 @@ export class App extends React.Component {
 
     const { filter } = this.state;
     return (
-      <div>
-        <h1>Phonebook</h1>
-        <ContactForm onSubmit={this.addContact} />
-
-        <h2>Contacts</h2>
-        <Filter value={filter} onChange={this.filterChange} />
-        <ContactsList
-          contacts={visibleContacts}
-          onDeleteContact={this.onDeleteContact}
-        />
-      </div>
+      <AppWrapper>
+        <FormWrapper>
+          <Title>Phonebook</Title>
+          <ContactForm onSubmit={this.addContact} />
+        </FormWrapper>
+        <ContactsWrapper>
+          <Title>Contacts</Title>
+          <Filter value={filter} onChange={this.filterChange} />
+          <ContactsList
+            contacts={visibleContacts}
+            onDeleteContact={this.onDeleteContact}
+          />
+        </ContactsWrapper>
+      </AppWrapper>
     );
   }
 }

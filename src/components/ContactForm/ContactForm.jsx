@@ -1,7 +1,11 @@
 import React from 'react';
 import { nanoid } from 'nanoid';
 
-import { ContactFormWrapper } from 'components/ContactForm/ContactForm.styled';
+import {
+  FormInput,
+  FormBtn,
+  FormLabel,
+} from 'components/ContactForm/ContactForm.styled';
 
 export default class ContactForm extends React.Component {
   state = {
@@ -29,10 +33,10 @@ export default class ContactForm extends React.Component {
 
   render() {
     return (
-      <ContactFormWrapper onSubmit={this.onFormSubmit}>
+      <form onSubmit={this.onFormSubmit}>
         <div>
-          <label htmlFor={this.nameInputId}>Name</label>
-          <input
+          <FormLabel htmlFor={this.nameInputId}>Name</FormLabel>
+          <FormInput
             type="text"
             value={this.state.name}
             onChange={this.onFormChange}
@@ -44,8 +48,8 @@ export default class ContactForm extends React.Component {
           />
         </div>
         <div>
-          <label htmlFor={this.numberInputId}>Number</label>
-          <input
+          <FormLabel htmlFor={this.numberInputId}>Number</FormLabel>
+          <FormInput
             type="tel"
             value={this.state.number}
             onChange={this.onFormChange}
@@ -56,8 +60,8 @@ export default class ContactForm extends React.Component {
             required
           />
         </div>
-        <button type="submit">Add contact</button>
-      </ContactFormWrapper>
+        <FormBtn type="submit">Add contact</FormBtn>
+      </form>
     );
   }
 }
