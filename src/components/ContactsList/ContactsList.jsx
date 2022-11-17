@@ -3,6 +3,7 @@ import {
   ListItem,
   ContactList,
   DeleteBtn,
+  Name,
 } from './ContactsList.styled';
 
 const ContactsList = ({ contacts, onDeleteContact }) => {
@@ -11,7 +12,7 @@ const ContactsList = ({ contacts, onDeleteContact }) => {
       <ContactList>
         {contacts.map(({ name, number, id }) => (
           <ListItem key={id}>
-            <p>{name}</p>
+            <Name>{name}</Name>
             <span>{number}</span>
             <DeleteBtn onClick={() => onDeleteContact(id)}>Delete</DeleteBtn>
           </ListItem>

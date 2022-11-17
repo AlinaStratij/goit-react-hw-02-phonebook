@@ -5,6 +5,8 @@ import ContactsList from './ContactsList';
 import Filter from './Filter';
 
 import { FormWrapper, ContactsWrapper, AppWrapper, Title } from './App.styled';
+import { nanoid } from 'nanoid';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 export class App extends React.Component {
   state = {
@@ -18,12 +20,17 @@ export class App extends React.Component {
   };
 
   addContact = (name, number) => {
-    const contact = {
+    const newContact = {
+      id: nanoid(),
       name,
       number,
     };
+    if (this.state.contacts.find(contact => contact.name === newContact.name)) {
+      Notify.failure(`${newContact.name} is alredy in contacts`);
+      return;
+    }
     this.setState(prevState => ({
-      contacts: [contact, ...prevState.contacts],
+      contacts: [newContact, ...prevState.contacts],
     }));
   };
 
@@ -32,13 +39,11 @@ export class App extends React.Component {
       contacts: prevState.contacts.filter(contact => contact.id !== contactId),
     }));
   };
+
   filterChange = event => {
     this.setState({ filter: event.currentTarget.value });
   };
 
-  formSubmitHandler(data) {
-    console.log(data);
-  }
   render() {
     const visibleContacts = this.state.contacts.filter(contact =>
       contact.name.toLowerCase().includes(this.state.filter.toLowerCase())
