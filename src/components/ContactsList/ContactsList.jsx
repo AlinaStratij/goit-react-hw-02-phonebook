@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import {
   ListWrapper,
   ListItem,
@@ -22,3 +24,14 @@ const ContactsList = ({ contacts, onDeleteContact }) => {
   );
 };
 export default ContactsList;
+
+ContactsList.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.exact({
+      id: PropTypes.string,
+      name: PropTypes.string,
+      number: PropTypes.string,
+    })
+  ),
+  onDeleteContact: PropTypes.func.isRequired,
+};
